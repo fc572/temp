@@ -6,9 +6,9 @@ var mime = require("mime");
 var server = http.createServer(function(request, response) {
   var filePath = false;
 
-  if (request.url == '/') {
+  if (request.url == "/") {
     filePath = "public/index.html";
-  } else if (request.url == '/codes'){
+  } else if (request.url == "/codes"){
        filePath = "public/api/codes.html"
   } else {
       filePath = "public" + request.url;
@@ -46,4 +46,3 @@ function serverWorking(response, absPath) {
     }
   });
 }
-

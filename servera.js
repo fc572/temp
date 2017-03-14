@@ -1,14 +1,42 @@
-<html>
-    <head>
-    <link rel="stylesheet" type="text/css" href="stylesheets\style.css">
-     <title> API response page</title>
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-     <script type="text/javascript">
-     	function sendResponseCode(){
-     		var queryDict = {}
-location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
-      document.getElementById("demo").innerHTML = queryDict;
-     		    var requestedCode = request.url.get('code');
+var http = require('http');
+
+http.createServer(function(request, response) {
+    if (request.method === 'GET'){
+    if(request.url === '/codes'){
+    var headers = request.headers;
+    var method = request.method;
+    var url = request.url;
+    var body = [];
+    request.on('error', function(err) {
+      console.error(err);
+    }).on('data', function(chunk) {
+      body.push(chunk);
+    }).on('end', function() {
+        body = Buffer.concat(body).toString();
+        response.on('error', function(err) {
+          console.error(err);
+        });
+      }
+    }
+    else{
+          response.writeHead(404, {'Content-Type': 'application/json'})
+          var responseBody = {
+          headers: headers,
+          body: "Resource not found"
+      };
+      response.end(JSON.stringify(responseBody))
+      }
+      else{
+          response.writeHead(405, {'Content-Type': 'application/json'})
+          var responseBody = {
+            headers: headers,
+            body: "Method not allowed"
+          };
+          response.end(JSON.stringify(responseBody))
+      }
+    }
+
+    var requestedCode = request.url.get('code');
   switch (requestedCode) {
             case 100:
                 body = "Continue";
@@ -175,18 +203,4 @@ location.search.substr(1).split("&").forEach(function(item) {queryDict[item.spli
       body: body
     };
     response.end(JSON.stringify(responseBody));
-     	}
-     </script>
-    </head>
-
-	<body id="backgroundcolor">
-<div id="marginTop"></div>
-	<div id="centre" class="box">
-			<strong> API reponse </a></strong>
-			<p>
-		    	"'The code number, ' + ${code} + ' means ' + ${message} "
-			</p>
-			<p id="demo"> </p>
-    </div>
-	</body>
-</html>
+}).listen(8080);
