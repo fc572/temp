@@ -1,32 +1,18 @@
-var http = require('http');
-var url = require('url');
-var server = http.createServer(function(request, response) {
-var body = sendResponseCode(request);
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="stylesheets\style.css">
+     <title> API response page</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <script type="text/javascript">
+     	function sendResponseCode(){
 
-      response.writeHead(body[0], {'Content-Type': 'application/json'});
-          var responseBody = {
-      //headers: headers,
-      method: "GET",
-      url: request.url,
-      body: body[1]
-    };
-    response.end(JSON.stringify(responseBody));
-    console.log("***************");
-    console.log("responseBody");
-
-});
-server.listen(8080, 'localhost');
-
-function sendResponseCode(request){
-
-                var urlparsed = url.parse(request.url, true)
+     		    var urlparsed = url.parse(request.url, true)
                 
                 var splitted = urlparsed.search.split("=");
 
                 var requestedCode = splitted[1];
-console.log("requestedCode " + requestedCode);
-  switch (parseInt(requestedCode)) {
-    
+
+  switch (requestedCode) {
             case 100:
                 body = "Continue";
                 break;
@@ -37,8 +23,7 @@ console.log("requestedCode " + requestedCode);
                 body = "Processing";
                 break;
             case 200:
-                body = [requestedCode, "OK"];
-                console.log("@@@@@@@@" + body);
+                body = "OK";
                 break;
             case 201:
                 body = "Created";
@@ -184,5 +169,27 @@ console.log("requestedCode " + requestedCode);
             default:
                 throw new Exception("Code not found");
         }
-            return body;
-        }
+  
+      response.writeHead(requestedCode, {'Content-Type': 'application/json'});
+          var responseBody = {
+      headers: headers,
+      method: method,
+      url: url,
+      body: body
+    };
+    response.end(JSON.stringify(responseBody));
+     	}
+     </script>
+    </head>
+
+	<body id="backgroundcolor">
+<div id="marginTop"></div>
+	<div id="centre" class="box">
+			<strong> API reponse </a></strong>
+			<p>
+		    	"'The code number, ' + ${code} + ' means ' + ${message} "
+			</p>
+			<p id="demo"> </p>
+    </div>
+	</body>
+</html>
