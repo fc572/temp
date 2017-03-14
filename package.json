@@ -1,0 +1,8 @@
+{
+  "name" : "fc572",
+  "version" : "0.0.1",
+  "description" : "Repository of thoughts",
+  "dependencies" : {
+    "mime" : "~1.2.11"
+  }
+}
