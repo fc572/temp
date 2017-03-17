@@ -1,0 +1,16 @@
+{
+  "name": "fc572",
+  "version": "1.0.0",
+  "description": "fc572 website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"  },
+  "keywords": [
+    "fc572"
+  ],
+  "author": "Francesco Calvino",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}

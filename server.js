@@ -2,20 +2,32 @@ var http = require("http");
 var fs = require("fs");
 var path = require("path");
 var mime = require("mime");
+var url = require("url");
+var express = require("express");
 
 var server = http.createServer(function(request, response) {
   var filePath = false;
+console.log(request.url, " RWEEEWEW");
 
-  if (request.url == "/") {
-    filePath = "public/index.html";
-  } else if (request.url == "/codes"){
-       filePath = "public/api/codes.html"
-  } else {
-      filePath = "public" + request.url;
-  }
+var urlparsed = url.parse(request.url, true)
+     console.log(urlparsed);
+
+var app = express();
+
+app.use(express.static("public"));
+
+app.get('/codes', function(request, response){
+  var urlparsed = url.parse(request.url, true);
+     console.log(urlparsed);
+     var splitted = urlparsed.search.split("=");
+     var requestedCode = splitted[1];
+     filePath = "public" + urlparsed.pathname + ".html";
+     data = requestedCode;
+});
 
   var absPath = "./" + filePath;
   serverWorking(response, absPath);
+
 });
 
 var port_number = server.listen(process.env.PORT || 3333);
