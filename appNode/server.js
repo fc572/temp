@@ -13,6 +13,7 @@ app.use(express.static('src/views'));
 app.get('/', function(request, response){
 
 });
+//app.get('/httpcodes/10?', [function sends 101 and message, function sends 200]);
 
 app.get('/httpcodes/:id', function(request, response){
 	var id = request.params.id;
