@@ -7,22 +7,10 @@
 	margin-right: auto;
 }
 
-.box{
-	background-color:white;
-	border-radius: 25px;
-	padding:25px;
-	border:2px solid black;
-}
-
 #rightColumn{
 	float:right;
 	width: 20%;
 }
-
-#backgroundColor{
-	background-color:#3333CC;
-}
-
 
 #ulMenuHeader{
 	float: right;
@@ -40,13 +28,61 @@
   }
 
 #centre{
-	float:left;
-	width: 80%;
-	margin-left:10%;
+	float:right;
+	position: relative;
+  	left: -20%; /* or right 50% */
+  	text-align: left;
+	width: 60%;
+	background-color:#3333CC;
 }
 
 body{
 	font-size: 18px;
 	line-height:25px;
 	clear:both;
+}
+
+.box{
+	background-color:#000000;
+	color: #FF691F;
+	border-radius: 25px;
+	padding:25px;
+	border:2px solid;
+	text-align: center;
+	font:20px 'Times new roman', serif; 
+}
+
+#maincontainer{
+	background-color:#000000;
+	color: #FF691F;
+	border-radius: 25px;
+	padding:25px;
+	border:2px solid;
+	font:20px 'Times new roman', serif; 
+	text-align: left;
+}
+
+
+		
+body{
+	font-size: 20px;
+	line-height:25px;
+	clear:both;
+}
+
+.formInputFormat{
+	border: 1px solid #fecb04;
+	border-radius:10px;
+	width:50%;
+	min-height: 40px;
+	background-color:#fecb04;
+}
+
+.btnStyle{
+	border: 1px solid #fecb04;
+	border-radius:10px;
+	background-color:#000000;
+	text-align: center;
+	font:20px 'Times new roman', serif; 
+	color: #FF691F;
 }

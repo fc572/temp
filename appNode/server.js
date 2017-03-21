@@ -6,24 +6,24 @@ var app = express();
 var port = 3333;
 
 app.set('view engine', 'ejs');
-
 app.use(express.static('public'));
 app.use(express.static('src/views'));
 
-app.get('/', function(request, response){
-
-});
-//app.get('/httpcodes/10?', [function sends 101 and message, function sends 200]);
-
 app.get('/httpcodes/:id', function(request, response){
 	var id = request.params.id;
-	console.log("THIS IS ID ", id);
-	if(id > 99 && id < 101){
-		response.send("You asked a 100, please send a request body or the browser will timeout");
-		response.setTimeout(1000, response.writeContinue());
+
+	if(id == 100){
+		response.send("You asked a 100, please send a request body or the browser will timeout in 3 seconds");
+		response.setTimeout(3000, response.writeContinue());
+	}
+	else if(id == 101){
+		reponse.send("We should be switching protocols, but we are not, get a 200 instead");
+	}
+	else if(id == 204){
+		response.status(204).send("Not found");
 	}
 	else if(id == 301){
-		response.redirect(301, ".views/301redirect.html");
+		response.status(301).send("We replied with a 301 but we did not redirected you anywhere");
 	}
 	else if(checkStatus(id)){
 		response.sendStatus(id);
