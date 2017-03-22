@@ -76,6 +76,7 @@ body{
 	width:50%;
 	min-height: 40px;
 	background-color:#fecb04;
+	align-self: center;
 }
 
 .btnStyle{

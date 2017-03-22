@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script>
+      function myLoginFunction(form) {
+         if (form.field_uname.value =="Neo") { 
+            if (form.field_pwd.value=="redpill") {              
+               document.getElementById("demo").innerHTML = "You are now logged in into the Matrix! You'll be redirect to the Matrix wiki page, then back here in 5 seconds";
+               var seconds_left = 5;
+               var interval = setInterval(function() {
+                  document.getElementById('timer').innerHTML = --seconds_left;
+                  if (seconds_left <= 0){
+                    clearInterval(interval);
+                   // window.location.href = 
+                    myWindow = window.open("https://en.wikipedia.org/wiki/The_Matrix");
+                    setInterval(function closeWin() {
+                        myWindow.close();   // Closes the new window
+                     }, 5000);
+                  }
+               }, 1000);
+               return false;
+            } 
+            else {
+               alert("You have chosen the blue pill");
+            }
+         }
+         else {  
+            alert("Invalid UserID");
+         }
+      }
+      function resetPage() {
+         document.getElementById("loginForm").reset();
+         document.getElementById("demo").innerHTML = '';
+         document.getElementById("timer").innerHTML = '';
+      }
+   </script>
+   <link rel="stylesheet" type="text/css" href="style.css">
+      <title>
+         Fake login page
+      </title>
+   </head>
+   <body id="centre">
+   <p class="box">This is a page set up to help with the page object model concepts <br/>
+   The user name is Neo, the password is redpill<br/>
+   </p>
+
+   <form class="box" id="loginForm">
+      User Name: <input class="formInputFormat" type="input" size="35" id="field_uname"/><br/><br/>
+      Password: <input class="formInputFormat" type="input" size="35" id="field_pwd"/><br/><br/>
+      <button id="loginBtn" class="btnStyle" onclick="return myLoginFunction(this.form)">Log into the Matrix</button> <br/><br/>
+   </form>
+   <br/>
+   <div class="box">
+      <h4 id="demo" style="color:#fecb04"></h4><br/>
+      <h4 id="timer" style="color:#fecb04"></h4>
+      <button id="resetBtn" class="btnStyle" onclick="resetPage()">Reset form</button> <br/><br/>
+   </div>
+   </body>
+</html>
