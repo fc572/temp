@@ -3,8 +3,7 @@ var ejs = require("ejs");
 
 var app = express();
 
-var port = 3333;
-
+app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.static('src/views'));
