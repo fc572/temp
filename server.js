@@ -3,7 +3,6 @@ var ejs = require("ejs");
 
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.static('src/views'));
@@ -32,8 +31,8 @@ app.get('/httpcodes/:id', function(request, response){
 	}
 });
 
-app.listen(port, function(){
-	console.log("server started on port ", port);
+app.listen(process.env.PORT || 5000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 function checkStatus(status){
