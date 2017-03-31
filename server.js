@@ -5,25 +5,29 @@ var app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(express.static('src/views'));
+app.use(express.static('src/html'));
 
 app.get('/httpcodes/:id', function(request, response) {
 	var id = request.params.id;
+console.log(response.status(id));
+	//var deserialisedResponse = JSON.stringify(response.status(id));
 
-	if (id == 100) {
-		response.send("You asked a 100, please send a request body or the browser will timeout in 3 seconds");
-		response.setTimeout(3000, response.writeContinue());
-	} else if (id == 101) {
-		reponse.send("We should be switching protocols, but we are not, get a 200 instead");
-	} else if (id == 204) {
-		response.status(204).send("Not found");
-	} else if (id == 301) {
-		response.status(301).send("We replied with a 301 but we did not redirected you anywhere");
-	} else if (checkStatus(id)) {
-		response.sendStatus(id);
-	} else {
-		response.status(404).send("We could not find the status you are requesting, hence we return you a 404");
-	}
+	response.render('statushtml.ejs', {statuscode:deserialisedResponse});
+
+	// if (id == 100) {
+	// 	response.send("You asked a 100, please send a request body or the browser will timeout in 3 seconds");
+	// 	response.setTimeout(3000, response.writeContinue());
+	// } else if (id == 101) {
+	// 	reponse.send("We should be switching protocols, but we are not, get a 200 instead");
+	// } else if (id == 204) {
+	// 	response.status(204).send("Not found");
+	// } else if (id == 301) {
+	// 	response.status(301).send("We replied with a 301 but we did not redirected you anywhere");
+	// } else if (checkStatus(id)) {
+	// 	response.sendStatus(id);
+	// } else {
+	// 	response.status(404).send("We could not find the status you are requesting, hence we return you a 404");
+	// }
 });
 
 app.listen(process.env.PORT || 5000, function() {
