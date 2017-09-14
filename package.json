@@ -1,5 +1,5 @@
 {
-  "name": "aaa",
+  "name": "fc572",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -16,7 +16,7 @@
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-1": "^6.22.0",
-    "fluture": "^5.0.0",
+    "fluture": "^7.1.2",
     "js-cookie": "^2.1.3",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
