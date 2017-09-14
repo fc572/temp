@@ -14,7 +14,10 @@ app.get('/httpcodes/:id', function(request, response) {
 		response.send("You asked a 100, please send a request body or the browser will timeout in 3 seconds");
 		response.setTimeout(3000, response.writeContinue());
 	} else if (id == 101) {
-		reponse.send("We should be switching protocols, but we are not, get a 200 instead");
+		response.send("We should be switching protocols, but we are not, get a 200 instead");
+	} else if (id == 102) {
+		response.send("We should be processing, but we are not, get a 200 instead of waiting forever");
+		response.setTimeout(3000, response.writeContinue());
 	} else if (id == 204) {
 		response.status(204).send("Not found");
 	} else if (id == 301) {
@@ -32,9 +35,9 @@ app.listen(process.env.PORT || 5000, function() {
 
 function checkStatus(status) {
 	var statusInt = parseInt(status);
-	var statuses = [100, 101, 200, 201, 202, 203, 204, 205, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308,
-		400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 421, 422,
-		423, 424, 425, 426, 427, 428, 429, 430, 431, 451, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511
+	var statuses = [100, 101, 102, 200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304, 305, 306, 307, 308,
+		400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422,
+		423, 424, 425, 426, 428, 429, 431, 451, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511
 	];
 	return (statuses.indexOf(statusInt) > -1);
 }
