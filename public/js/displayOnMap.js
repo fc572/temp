@@ -24,7 +24,7 @@ function arrangeAndDisplay(map) {
     j = 0;
 
     if (flag) {
-      if (bikeGeoLocationAndName[ßx][3] == 'B') {
+      if (bikeGeoLocationAndName[x][3] == 'B') {
         iconPin = bikeSouth;
         countBikesSouth++;
       } else {
